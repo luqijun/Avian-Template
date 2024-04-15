@@ -182,7 +182,7 @@ const replyMessage = getMessageById(activeConversation, props.message.replyTo);
         <Receipt v-if="props.self" :state="props.message.state" />
       </div>
     </div>
-    <MessageContextMenu
+    <!-- <MessageContextMenu
       :selected="props.selected"
       :message="props.message"
       :show="showContextMenu"
@@ -191,6 +191,6 @@ const replyMessage = getMessageById(activeConversation, props.message.replyTo);
       :handle-close-context-menu="handleCloseContextMenu"
       :handle-select-message="handleSelectMessage"
       :handle-deselect-message="handleDeselectMessage"
-    />
+    /> -->
   </div>
 </template>
