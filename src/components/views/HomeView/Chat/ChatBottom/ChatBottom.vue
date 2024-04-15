@@ -94,7 +94,7 @@ onMounted(() => {
     >
       <div class="min-h-[2.75rem]">
         <!--select attachments button-->
-        <IconButton
+        <!-- <IconButton
           title="open select attachments modal"
           aria-label="open select attachments modal"
           @click="openAttachmentsModal = true"
@@ -104,7 +104,7 @@ onMounted(() => {
           <PaperClipIcon
             class="w-[1.25rem] h-[1.25rem] text-gray-400 group-hover:text-indigo-300"
           />
-        </IconButton>
+        </IconButton> -->
 
         <!--recording timer-->
         <Typography
