@@ -202,7 +202,7 @@ const isActive = computed(
     </button>
 
     <!--custom context menu-->
-    <Dropdown
+    <!-- <Dropdown
       :close-dropdown="() => (showContextMenu = false)"
       :show="showContextMenu"
       :handle-close="handleCloseContextMenu"
@@ -227,6 +227,6 @@ const isActive = computed(
         <TrashIcon class="h-5 w-5 mr-3" />
         Delete conversation
       </DropdownLink>
-    </Dropdown>
+    </Dropdown> -->
   </div>
 </template>
