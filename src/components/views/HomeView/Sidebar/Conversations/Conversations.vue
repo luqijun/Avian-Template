@@ -2,6 +2,7 @@
 import type { IConversation } from "@src/types";
 import type { Ref } from "vue";
 import { onMounted, ref, watch } from "vue";
+import router from "@src/router";
 
 import useStore from "@src/store/store";
 import { getActiveConversationId, getName } from "@src/utils";
@@ -58,6 +59,10 @@ const closeComposeModal = () => {
 // if the active conversation is in the archive
 // then open the archive
 onMounted(() => {
+
+  // 默认选择第一个会话
+  router.push({ path: `/chat/1/` });
+
   let conversation = store.archivedConversations.find(
     (conversation) => conversation.id === getActiveConversationId()
   );
@@ -70,10 +75,10 @@ onMounted(() => {
   <div>
     <SidebarHeader>
       <!--title-->
-      <template v-slot:title>Messages</template>
+      <template v-slot:title>会话列表</template>
 
       <!--side actions-->
-      <template v-slot:actions>
+      <!-- <template v-slot:actions>
         <IconButton
           @click="composeOpen = true"
           aria-label="compose conversation"
@@ -84,7 +89,7 @@ onMounted(() => {
             class="w-[1.25rem] h-[1.25rem] text-indigo-300 hover:text-indigo-400"
           />
         </IconButton>
-      </template>
+      </template> -->
     </SidebarHeader>
 
     <!--search bar-->
@@ -105,11 +110,11 @@ onMounted(() => {
       />
 
       <div v-else>
-        <ArchivedButton
+        <!-- <ArchivedButton
           v-if="store.archivedConversations.length > 0"
           :open="openArchive"
           @click="openArchive = !openArchive"
-        />
+        /> -->
 
         <div
           v-if="
