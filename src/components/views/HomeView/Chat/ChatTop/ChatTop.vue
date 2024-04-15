@@ -72,7 +72,7 @@ const handleCloseVoiceCallModal = (endCall: boolean) => {
     </div>
 
     <!--Pinned Message-->
-    <div
+    <!-- <div
       class="relative transition-[padding] duration-200"
       :class="{
         'pb-[3.75rem]':
@@ -81,26 +81,26 @@ const handleCloseVoiceCallModal = (endCall: boolean) => {
       }"
     >
       <PinnedMessage :active-conversation="activeConversation" />
-    </div>
+    </div> -->
 
     <!--Search modal-->
-    <SearchModal
+    <!-- <SearchModal
       :open="openSearch"
       :close-modal="() => (openSearch = false)"
       :conversation="activeConversation"
-    />
+    /> -->
 
     <!--Contact info modal-->
-    <ConversationInfoModal
+    <!-- <ConversationInfoModal
       :open="openInfo"
       :closeModal="() => (openInfo = false)"
       :conversation="activeConversation"
-    />
+    /> -->
 
     <!--voice call modal-->
-    <VoiceCallModal
+    <!-- <VoiceCallModal
       :open="store.openVoiceCall"
       :close-modal="handleCloseVoiceCallModal"
-    />
+    /> -->
   </div>
 </template>

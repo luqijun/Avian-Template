@@ -124,7 +124,7 @@ const handleOpenVoiceCallModal = () => {
 
     <div class="flex" :class="{ hidden: store.status === 'loading' }">
       <!--search button-->
-      <IconButton
+      <!-- <IconButton
         title="search messages"
         aria-label="search messages"
         @click="props.handleOpenSearch"
@@ -133,11 +133,11 @@ const handleOpenVoiceCallModal = () => {
         <MagnifyingGlassIcon
           class="w-[1.25rem] h-[1.25rem] text-gray-400 group-hover:text-indigo-300"
         />
-      </IconButton>
+      </IconButton> -->
 
       <div class="relative">
         <!--dropdown menu button-->
-        <IconButton
+        <!-- <IconButton
           id="open-conversation-menu"
           @click="showDropdown = !showDropdown"
           tabindex="0"
@@ -150,10 +150,10 @@ const handleOpenVoiceCallModal = () => {
           <EllipsisVerticalIcon
             class="open-top-menu w-[1.25rem] h-[1.25rem] text-gray-400 group-hover:text-indigo-300"
           />
-        </IconButton>
+        </IconButton> -->
 
         <!--dropdown menu-->
-        <Dropdown
+        <!-- <Dropdown
           id="conversation-menu"
           :close-dropdown="() => (showDropdown = false)"
           :show="showDropdown"
@@ -200,7 +200,7 @@ const handleOpenVoiceCallModal = () => {
             <NoSymbolIcon class="h-5 w-5 mr-3" />
             Block contact
           </DropdownLink>
-        </Dropdown>
+        </Dropdown> -->
       </div>
     </div>
   </div>
