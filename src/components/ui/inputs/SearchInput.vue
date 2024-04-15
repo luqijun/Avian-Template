@@ -16,7 +16,7 @@ const input: Ref<HTMLInputElement | null> = ref(null);
 
 const baseClasses = `w-full h-8 py-3 px-7 border outline-none rounded-sm text-black
 dark:text-white dark:opacity-70 placeholder:text-black placeholder:opacity-40
-dark:placeholder:text-white dark:placeholder:opacity-70 focus:outline-none 
+dark:placeholder:text-white dark:placeholder:opacity-70 focus:outline-none
 focus:ring focus:ring-indigo-100 duration-200 transition ease-out
 text-opacity-70`;
 

@@ -61,7 +61,7 @@ watch(
     class="slider"
     :id="props.id"
     :value="value"
-    @input="$event => { 
+    @input="$event => {
       changeBarStyle();
       $emit('valueChange', ($event.target as HTMLInputElement).value);
     }"

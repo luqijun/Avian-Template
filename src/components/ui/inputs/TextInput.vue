@@ -25,8 +25,8 @@ const variantClasses = computed(() => {
             dark:text-white dark:bg-opacity-70 dark:focus:bg-opacity-0 focus:bg-opacity-0 focus:border-indigo-300
             dark:border-gray-600`;
   } else {
-    return `text-black bg-gray-50 dark:text-white border-opacity-0 
-            dark:bg-gray-700 dark:bg-opacity-70 dark:border-opacity-70 dark:border-gray-700 
+    return `text-black bg-gray-50 dark:text-white border-opacity-0
+            dark:bg-gray-700 dark:bg-opacity-70 dark:border-opacity-70 dark:border-gray-700
             focus:ring focus:ring-indigo-100 dark:focus:bg-opacity-0 focus:bg-opacity-0`;
   }
 });
