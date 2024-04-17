@@ -16,5 +16,5 @@ const props = defineProps<{
     v-else-if="props.state === 'sent'"
     class="w-[.875rem] h-[.875rem] text-gray-300"
   />
-  <DoubleChecks v-else :state="props.state" />
+  <!-- <DoubleChecks v-else :state="props.state" /> -->
 </template>

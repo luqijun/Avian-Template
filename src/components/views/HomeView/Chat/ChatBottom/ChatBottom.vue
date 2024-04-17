@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Ref } from "vue";
-import type { IConversation } from "@src/types";
+import type { IConversation, IMessage } from "@src/types";
 
 import useStore from "@src/store/store";
 import { ref, inject, onMounted } from "vue";
@@ -72,6 +72,29 @@ const handleSetDraft = () => {
   }
 };
 
+const handleSendMessage = (msg:string) => {
+  console.log("handleSendMessage:" + msg);
+  value.value = ""
+  const index = getConversationIndex(activeConversation.id);
+  if (index !== undefined) {
+    let sender = activeConversation.contacts[1]
+    const newMessage: IMessage = {
+      id: activeConversation.messages.length + 1,
+      content: msg,
+      sender: sender,
+      date: new Date().toISOString(),
+      state: "waiting",
+    };
+    activeConversation.messages.push(newMessage);
+    activeConversation.draftMessage = "";
+
+    // 请求api
+
+
+    console.log(store.conversations)
+  }
+};
+
 onMounted(() => {
   value.value = activeConversation.draftMessage;
 });
@@ -122,12 +145,13 @@ onMounted(() => {
           <Textarea
             v-model="value"
             @input="handleSetDraft"
+            @sendMessage="handleSendMessage"
             :value="value"
             class="max-h-[5rem] pr-[3.125rem] resize-none scrollbar-hidden"
             auto-resize
             cols="30"
             rows="1"
-            placeholder="Write your message here"
+            placeholder="请输入信息。Enter 发送。Shift + Enter 换行。"
             aria-label="Write your message here"
           />
 
@@ -211,6 +235,7 @@ onMounted(() => {
         <!--send message button-->
         <IconButton
           v-if="!recording"
+          @click="handleSendMessage(value)"
           class="group w-7 h-7 bg-indigo-300 hover:bg-indigo-400 focus:bg-indigo-400 dark:focus:bg-indigo-300 dark:bg-indigo-400 dark:hover:bg-indigo-400 active:scale-110"
           variant="ghost"
           title="send message"

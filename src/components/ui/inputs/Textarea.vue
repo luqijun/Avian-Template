@@ -3,6 +3,9 @@ import type { Ref } from "vue";
 
 import { twMerge } from "tailwind-merge";
 import { computed, ref } from "vue";
+import { emit } from "process";
+
+const emits = defineEmits(["sendMessage", "update:modelValue"]);
 
 const props = defineProps<{
   class: any;
@@ -11,7 +14,7 @@ const props = defineProps<{
   autoResize?: boolean;
 }>();
 
-const textarea: Ref<HTMLTextAreaElement | null> = ref(null);
+const textareaRef: Ref<HTMLTextAreaElement | null> = ref(null);
 
 const baseClasses = `max-w-full w-full px-5 py-4 rounded-sm content-center outline-none text-sm
         placeholder:text-black placeholder:opacity-40 text-opacity-70 dark:placeholder:text-white
@@ -32,18 +35,42 @@ const variantClasses = computed(() => {
 const classes = twMerge(baseClasses, variantClasses.value, props.class);
 
 const handleAutoResize = () => {
-  if (props.autoResize && textarea.value) {
-    textarea.value.style.height = "auto";
-    textarea.value.style.height = textarea.value.scrollHeight + "px";
+  if (props.autoResize && textareaRef.value) {
+    textareaRef.value.style.height = "auto";
+    textareaRef.value.style.height = textareaRef.value.scrollHeight + "px";
   }
 };
+
+const handleShiftEnter = (event: KeyboardEvent) => {
+  // 阻止默认的 Shift+Enter 行为
+  event.preventDefault();
+  // 在 textarea 中插入一个换行符
+  const textarea = textareaRef.value;
+  if (textarea) {
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const value = textarea.value;
+    textarea.value = value.substring(0, start) + '\n' + value.substring(end);
+    textarea.selectionStart = textarea.selectionEnd = start + 1;
+  }
+};
+
+const handleEnter = (event: KeyboardEvent) => {
+  // 阻止默认的 Enter 行为
+  event.preventDefault();
+  const textarea = textareaRef.value;
+  if (!event.shiftKey && textarea && textarea.value){
+    emits("sendMessage", textarea.value);
+    textarea.value = ""
+    handleAutoResize()
+  }
+};
+
 </script>
 
 <template>
-  <textarea
-    :class="classes"
-    ref="textarea"
-    :value="props.value"
-    @input="$event =>{handleAutoResize(); $emit('update:modelValue', ($event.target as HTMLInputElement).value)}"
-  ></textarea>
+  <textarea :class="classes" ref="textareaRef" :value="props.value"
+  @keydown.enter.shift="handleShiftEnter"
+  @keydown.enter="handleEnter"
+  @input="$event => { handleAutoResize(); $emit('update:modelValue', ($event.target as HTMLInputElement).value) }"></textarea>
 </template>

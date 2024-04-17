@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { IConversation, IMessage } from "@src/types";
 import type { Ref } from "vue";
-import { inject, onMounted, ref } from "vue";
+import { inject, onMounted, ref, watch, nextTick } from "vue";
 
 import useStore from "@src/store/store";
 
@@ -45,11 +45,24 @@ const renderDivider = (index: number, previousIndex: number): boolean => {
   }
 };
 
-// scroll messages to bottom.
-onMounted(() => {
+const scrollToBottom = () => {
   (container.value as HTMLElement).scrollTop = (
     container.value as HTMLElement
   ).scrollHeight;
+};
+
+watch(
+  () => activeConversation.messages,
+  async () => {
+    await nextTick()
+    scrollToBottom()
+  },
+  { deep: true }
+);
+
+// scroll messages to bottom.
+onMounted(() => {
+  scrollToBottom()
 });
 </script>
 
