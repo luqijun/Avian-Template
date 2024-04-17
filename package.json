@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "type": "module",
   "types": "./index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/luqijun/Avian-Template.git"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
